@@ -1,0 +1,87 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>Info</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" type="image/png" href="images/icon.png">
+</head>
+<body class="is-preload">
+
+    <!-- Header -->
+    <section id="header">
+        <header>
+            <span class="image avatar"><img src="images/avatar.jpg" alt="" /></span>
+            <h1 id="logo"><a href="index.html">MEHMETALI YILMAZ</a></h1>
+            <p>Bilgi İşlem Uzmanı</p>
+        </header>
+        <nav id="nav">
+            <ul>
+                <li><a href="#one" class="active">Programlar</a></li>
+        </nav>
+    </section>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <div id="main">
+            <section id="about">
+                <div class="container">
+                    <input type="text" id="searchInput" placeholder="Program Ara..." class="search-bar">
+                    <div id="programlink" class="program-link">
+                        <a href="http://mehmet.info/AnyDesk.exe" download>
+                            <button class="btn">AnyDesk</button>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const programLinks = document.querySelectorAll('.program-link a');
+
+            programLinks.forEach(function (link) {
+                const buttonText = link.querySelector('.btn').innerText.toLowerCase();
+
+                if (buttonText.includes(searchTerm)) {
+                    link.style.display = 'block';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+
+            sortButtons();
+        });
+
+        function sortButtons() {
+            const container = document.getElementById('programLinkContainer');
+            const links = Array.from(container.getElementsByTagName('a'));
+
+            links.sort((a, b) => {
+                const textA = a.querySelector('.button').innerText.toLowerCase();
+                const textB = b.querySelector('.button').innerText.toLowerCase();
+                return textA.localeCompare(textB);
+            });
+
+            links.forEach(link => container.appendChild(link));
+        }
+
+        window.onload = function () {
+            sortButtons();
+        };
+
+    </script>
+</body>
+</html>
